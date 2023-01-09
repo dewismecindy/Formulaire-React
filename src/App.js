@@ -7,16 +7,18 @@ import StepTwo from "./components/StepTwo";
 function App() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (name && password && email) {
-      alert("Votre formulaire a bien été envoyé");
-    } else {
-      setErrorMessage("Votre formulaire n'est pas correctement renseigné");
-    }
+    if (name && password && email)
+      if (password === confirmpassword) {
+        alert("Votre formulaire a bien été envoyé");
+      } else {
+        alert("Vos deux mots de passe ne sont pas identiques");
+      }
   };
   return (
     <div className="App">
@@ -33,7 +35,6 @@ function App() {
           id="name"
           value={name}
         />
-
         <label htmlFor="Email">Email</label>
         <input
           type="email"
@@ -44,7 +45,6 @@ function App() {
             setEmail(event.target.value);
           }}
         />
-
         <label htmlFor="password">Password</label>
         <input
           type="password"
@@ -55,25 +55,23 @@ function App() {
             setPassword(event.target.value);
           }}
         />
-
-        <label htmlFor="Confirm yout password">Confirm your password</label>
+        <label htmlFor="Confirm your password">Confirm your password</label>
         <input
           type="password"
-          value={password}
+          value={confirmpassword}
           placeholder="lErEaCtEuR2020"
-          id="password"
+          id="confirmpassword"
           onChange={(event) => {
-            setPassword(event.target.value);
+            setConfirmPassword(event.target.value);
           }}
         />
-
         <button type="submit">Register</button>
       </form>
 
       {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-      <foo>
+      <footer>
         <Footer />
-      </foo>
+      </footer>
     </div>
   );
 }
